@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import { env } from './config/env.js';
 import { errorHandler, notFoundHandler } from './middleware/error.middleware.js';
 import { authRouter } from './modules/auth/auth.routes.js';
+import { productRouter } from './modules/products/product.routes.js';
 import { userRouter } from './modules/users/user.routes.js';
 
 function corsOrigin(): cors.CorsOptions['origin'] {
@@ -28,6 +29,7 @@ export function createApp(): Express {
 
   app.use('/auth', authRouter);
   app.use('/users', userRouter);
+  app.use('/products', productRouter);
 
   app.use(notFoundHandler);
   app.use(errorHandler);
