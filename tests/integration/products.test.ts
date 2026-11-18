@@ -193,5 +193,50 @@ describe.skipIf(!dbReady)('Products (integration)', () => {
       const res = await api().get('/products?limit=1000').set('Authorization', staff);
       expect(res.status).toBe(400);
     });
+
+    it('treats % and _ in the search term literally, not as wildcards', async () => {
+      await ctx.createProduct('UND_1', 10, 1, `${ctx.runId} Under_score`);
+      await ctx.createProduct('UNDX1', 10, 1, `${ctx.runId} UnderXscore`);
+
+      const underscore = await api()
+        .get(`/products?search=${encodeURIComponent(ctx.sku('UND_'))}`)
+        .set('Authorization', staff);
+      expect(underscore.status).toBe(200);
+      expect(underscore.body.data.map((p: { sku: string }) => p.sku)).toEqual([ctx.sku('UND_1')]);
+
+      const percent = await api()
+        .get(`/products?search=${encodeURIComponent(`${ctx.runId} Under%score`)}`)
+        .set('Authorization', staff);
+      expect(percent.body.data).toEqual([]);
+    });
+
+    it('returns an empty page (200) when page is past the last page', async () => {
+      const search = encodeURIComponent(`${ctx.skuPrefix}-PG-`);
+      const res = await api()
+        .get(`/products?page=99&limit=2&search=${search}`)
+        .set('Authorization', staff);
+      expect(res.status).toBe(200);
+      expect(res.body.data).toEqual([]);
+      expect(res.body.pagination).toMatchObject({
+        page: 99,
+        totalRecords: 5,
+        totalPages: 3,
+        hasNextPage: false,
+      });
+    });
+
+    it('rejects page=0 and non-numeric page/limit with 400', async () => {
+      for (const qs of ['page=0', 'page=abc', 'limit=0', 'limit=-5']) {
+        const res = await api().get(`/products?${qs}`).set('Authorization', staff);
+        expect(res.status, qs).toBe(400);
+      }
+    });
+
+    it('rejects invalid product ids with 400', async () => {
+      for (const id of ['abc', '0', '-1', '1.5']) {
+        const res = await api().get(`/products/${id}`).set('Authorization', staff);
+        expect(res.status, id).toBe(400);
+      }
+    });
   });
 });
