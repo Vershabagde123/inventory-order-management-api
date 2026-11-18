@@ -13,7 +13,14 @@ const envSchema = z.object({
   JWT_SECRET: z
     .string({ error: 'JWT_SECRET is required' })
     .min(32, 'JWT_SECRET must be at least 32 characters long'),
-  JWT_EXPIRES_IN: z.string().min(1).default('1d'),
+  JWT_EXPIRES_IN: z
+    .string()
+    .trim()
+    .regex(
+      /^\d+(\s?(ms|s|m|h|d|w|y))?$/i,
+      'JWT_EXPIRES_IN must be seconds (e.g. 3600) or a duration such as 15m, 12h, 1d',
+    )
+    .default('1d'),
 
   BCRYPT_SALT_ROUNDS: z.coerce.number().int().min(4).max(15).default(12),
 

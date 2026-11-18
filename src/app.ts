@@ -3,6 +3,8 @@ import express, { type Express } from 'express';
 import helmet from 'helmet';
 import { env } from './config/env.js';
 import { errorHandler, notFoundHandler } from './middleware/error.middleware.js';
+import { authRouter } from './modules/auth/auth.routes.js';
+import { userRouter } from './modules/users/user.routes.js';
 
 function corsOrigin(): cors.CorsOptions['origin'] {
   if (env.CORS_ORIGIN.trim() === '*') return '*';
@@ -23,6 +25,9 @@ export function createApp(): Express {
   app.get('/health', (_req, res) => {
     res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
   });
+
+  app.use('/auth', authRouter);
+  app.use('/users', userRouter);
 
   app.use(notFoundHandler);
   app.use(errorHandler);
