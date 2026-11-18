@@ -8,6 +8,7 @@
  */
 import 'dotenv/config';
 import pg from 'pg';
+import { withStrictSsl } from '../src/utils/connection-string.js';
 
 interface Target {
   label: string;
@@ -49,16 +50,20 @@ async function check(target: Target): Promise<boolean> {
     `  neon host: ${info.neon} | pooled endpoint: ${info.pooled} | sslmode: ${info.sslmode} | database: ${info.database}`,
   );
 
-  const client = new pg.Client({ connectionString: raw, connectionTimeoutMillis: 15_000 });
+  const client = new pg.Client({
+    connectionString: withStrictSsl(raw),
+    connectionTimeoutMillis: 15_000,
+  });
   try {
     await client.connect();
-    const v = await client.query<{ version: string; ssl: boolean | null }>(
-      `SELECT current_setting('server_version') AS version,
-              (SELECT ssl FROM pg_stat_ssl WHERE pid = pg_backend_pid()) AS ssl`,
+    const v = await client.query<{ version: string }>(
+      `SELECT current_setting('server_version') AS version`,
     );
-    console.log(
-      `  connected: yes | server version: ${v.rows[0]?.version} | ssl: ${v.rows[0]?.ssl}`,
-    );
+    // Neon's proxy terminates TLS, so check the client side of the socket.
+    const stream = (client as unknown as { connection?: { stream?: { encrypted?: boolean } } })
+      .connection?.stream;
+    const tls = stream?.encrypted === true;
+    console.log(`  connected: yes | server version: ${v.rows[0]?.version} | client TLS: ${tls}`);
 
     const tables = await client.query<{ table_schema: string; table_name: string }>(
       `SELECT table_schema, table_name FROM information_schema.tables

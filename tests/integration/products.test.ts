@@ -128,8 +128,8 @@ describe.skipIf(!dbReady)('Products (integration)', () => {
   describe('pagination and search', () => {
     beforeAll(async () => {
       // 5 products with this run's unique prefix in both name and SKU.
-      await ctx.createProduct('PG-1', 100, 5, `${ctx.runId} Gaming Mouse`);
-      await ctx.createProduct('PG-2', 200, 5, `${ctx.runId} Office Mouse`);
+      await ctx.createProduct('PG-1', 100, 5, `${ctx.runId} Mouse Gaming`);
+      await ctx.createProduct('PG-2', 200, 5, `${ctx.runId} Mouse Office`);
       await ctx.createProduct('PG-3', 300, 5, `${ctx.runId} Keyboard`);
       await ctx.createProduct('PG-4', 400, 5, `${ctx.runId} Monitor`);
       await ctx.createProduct('PG-5', 500, 5, `${ctx.runId} Webcam`);
@@ -167,8 +167,8 @@ describe.skipIf(!dbReady)('Products (integration)', () => {
         .set('Authorization', staff);
       expect(res.status).toBe(200);
       expect(res.body.data.map((p: { name: string }) => p.name).sort()).toEqual([
-        `${ctx.runId} Gaming Mouse`,
-        `${ctx.runId} Office Mouse`,
+        `${ctx.runId} Mouse Gaming`,
+        `${ctx.runId} Mouse Office`,
       ]);
     });
 

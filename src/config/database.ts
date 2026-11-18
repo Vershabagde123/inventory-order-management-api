@@ -1,5 +1,6 @@
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '../generated/prisma/client.js';
+import { withStrictSsl } from '../utils/connection-string.js';
 import { env, isTest } from './env.js';
 
 /**
@@ -13,7 +14,7 @@ import { env, isTest } from './env.js';
 function createPrismaClient(): PrismaClient {
   const adapter = new PrismaPg(
     {
-      connectionString: env.DATABASE_URL,
+      connectionString: withStrictSsl(env.DATABASE_URL),
       max: 10,
       connectionTimeoutMillis: 15_000,
       idleTimeoutMillis: 30_000,
