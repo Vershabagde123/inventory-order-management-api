@@ -1,0 +1,37 @@
+# Render Blueprint (https://render.com/docs/blueprint-spec)
+# Secrets are declared with `sync: false` - enter them in the Render dashboard.
+services:
+  - type: web
+    name: inventory-order-management-api
+    runtime: node
+    plan: free
+    # Dev dependencies (typescript, tsx) are needed to build, even with NODE_ENV=production.
+    buildCommand: npm ci --include=dev && npm run build
+    # Non-destructive: applies pending migrations only. (preDeployCommand requires a paid
+    # plan; on the free plan, append `&& npm run db:migrate:deploy` to buildCommand instead.)
+    preDeployCommand: npm run db:migrate:deploy
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 24
+      - key: DATABASE_URL
+        sync: false
+      - key: DIRECT_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 1d
+      - key: BCRYPT_SALT_ROUNDS
+        value: 12
+      - key: CORS_ORIGIN
+        value: '*'
+      - key: ADMIN_NAME
+        value: System Admin
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false

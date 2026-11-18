@@ -1,0 +1,51 @@
+# Docker Compose
+#
+# Default:  `docker compose up --build`
+#   Runs ONLY the API container. It reads DATABASE_URL / DIRECT_URL from .env,
+#   i.e. it talks to your Neon PostgreSQL database. Nothing here replaces Neon.
+#
+# Optional local database (offline development / experiments only):
+#   `docker compose --profile local-db up --build`
+#   This additionally starts a local Postgres container. The API keeps using
+#   whatever .env says - to point it at the local container you must EXPLICITLY
+#   use an env file that targets it, e.g.:
+#     docker compose --profile local-db --env-file .env.docker-local up --build
+#   with DATABASE_URL/DIRECT_URL=postgresql://inventory:inventory@postgres:5432/inventory?sslmode=disable
+#   in .env.docker-local (see README "Docker").
+
+services:
+  app:
+    build: .
+    image: inventory-order-management-api:latest
+    env_file:
+      - path: .env
+        required: true
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      # Allow `--env-file <file>` overrides to take precedence for DB URLs.
+      DATABASE_URL: ${DATABASE_URL:?DATABASE_URL must be set}
+      DIRECT_URL: ${DIRECT_URL:?DIRECT_URL must be set}
+    ports:
+      - '5000:5000'
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:17-alpine
+    profiles: ['local-db']
+    environment:
+      POSTGRES_USER: inventory
+      POSTGRES_PASSWORD: inventory # local-only throwaway credential
+      POSTGRES_DB: inventory
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U inventory -d inventory']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  pgdata:
