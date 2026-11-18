@@ -94,7 +94,7 @@ const collection = {
       item: [
         req('Create product (ADMIN)', 'POST', '/products', {
           auth: bearer('adminToken'),
-          body: { name: 'Laptop', sku: 'LAP-001', price: 50000, stock: 10 },
+          body: { name: 'Laptop', sku: 'LAP-{{$timestamp}}', price: 50000, stock: 10 },
           tests: [
             'pm.test("201 Created", () => pm.response.to.have.status(201));',
             'pm.collectionVariables.set("productId", pm.response.json().data.id);',
