@@ -61,7 +61,9 @@ export const productService = {
     }
   },
 
-  async list(query: ListProductsQuery): Promise<{ items: ProductDto[]; pagination: PaginationMeta }> {
+  async list(
+    query: ListProductsQuery,
+  ): Promise<{ items: ProductDto[]; pagination: PaginationMeta }> {
     const where: Prisma.ProductWhereInput = query.search
       ? {
           OR: [

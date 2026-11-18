@@ -1,6 +1,7 @@
 import type { ErrorRequestHandler, RequestHandler } from 'express';
 import { ZodError } from 'zod';
 import { isProduction } from '../config/env.js';
+import { Prisma } from '../generated/prisma/client.js';
 import { AppError, type ErrorDetail } from '../utils/AppError.js';
 
 interface ErrorBody {
@@ -20,6 +21,55 @@ function zodToDetails(err: ZodError): ErrorDetail[] {
   }));
 }
 
+/**
+ * Map known Prisma errors to HTTP errors. Services already translate the
+ * expected cases (e.g. duplicate SKU); this is the generic fallback.
+ * Messages are generic on purpose - Prisma's own messages can include query details.
+ */
+function mapPrismaError(err: unknown): AppError | null {
+  if (err instanceof Prisma.PrismaClientKnownRequestError) {
+    switch (err.code) {
+      case 'P2002': // unique constraint
+        return AppError.conflict('A record with the same unique value already exists', 'DUPLICATE');
+      case 'P2003': // foreign key constraint
+        return AppError.conflict(
+          'Operation violates a relation constraint',
+          'FOREIGN_KEY_CONSTRAINT',
+        );
+      case 'P2025': // record not found
+        return AppError.notFound('Resource not found');
+      case 'P2034': // write conflict / deadlock - safe for the client to retry
+        return AppError.conflict(
+          'The request conflicted with a concurrent update, please retry',
+          'TRANSACTION_CONFLICT',
+        );
+      case 'P2028': // interactive transaction API error (e.g. timeout)
+        return new AppError(
+          503,
+          'TRANSACTION_UNAVAILABLE',
+          'The database is busy, please retry shortly',
+        );
+      default:
+        break;
+    }
+    // CHECK constraint violations (e.g. stock >= 0) surface as raw DB errors.
+    if (/check constraint/i.test(err.message)) {
+      return AppError.conflict('Operation violates a data integrity rule', 'CONSTRAINT_VIOLATION');
+    }
+    return null;
+  }
+
+  if (err instanceof Prisma.PrismaClientValidationError) {
+    return AppError.badRequest('Invalid data for database operation');
+  }
+
+  if (err instanceof Prisma.PrismaClientInitializationError) {
+    return new AppError(503, 'DATABASE_UNAVAILABLE', 'Database is unavailable');
+  }
+
+  return null;
+}
+
 /** Translate any thrown value into an AppError (or null if it is unexpected). */
 export function toAppError(err: unknown): AppError | null {
   if (err instanceof AppError) return err;
@@ -27,6 +77,9 @@ export function toAppError(err: unknown): AppError | null {
   if (err instanceof ZodError) {
     return AppError.badRequest('Validation failed', zodToDetails(err), 'VALIDATION_ERROR');
   }
+
+  const prismaError = mapPrismaError(err);
+  if (prismaError) return prismaError;
 
   // Malformed JSON body (thrown by express.json / body-parser)
   if (

@@ -1,11 +1,13 @@
 import cors from 'cors';
 import express, { type Express } from 'express';
 import helmet from 'helmet';
+import { checkDatabaseConnection } from './config/database.js';
 import { env } from './config/env.js';
 import { errorHandler, notFoundHandler } from './middleware/error.middleware.js';
 import { authRouter } from './modules/auth/auth.routes.js';
 import { orderRouter } from './modules/orders/order.routes.js';
 import { productRouter } from './modules/products/product.routes.js';
+import { reportRouter } from './modules/reports/report.routes.js';
 import { userRouter } from './modules/users/user.routes.js';
 
 function corsOrigin(): cors.CorsOptions['origin'] {
@@ -24,14 +26,25 @@ export function createApp(): Express {
   app.use(cors({ origin: corsOrigin() }));
   app.use(express.json({ limit: '100kb' }));
 
-  app.get('/health', (_req, res) => {
-    res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
+  /**
+   * GET /health - liveness + database connectivity.
+   * 200 when the database answers, 503 otherwise. No connection details are exposed.
+   */
+  app.get('/health', async (_req, res) => {
+    const dbUp = await checkDatabaseConnection();
+    res.status(dbUp ? 200 : 503).json({
+      status: dbUp ? 'ok' : 'degraded',
+      database: dbUp ? 'up' : 'down',
+      uptimeSeconds: Math.round(process.uptime()),
+      timestamp: new Date().toISOString(),
+    });
   });
 
   app.use('/auth', authRouter);
   app.use('/users', userRouter);
   app.use('/products', productRouter);
   app.use('/orders', orderRouter);
+  app.use('/reports', reportRouter);
 
   app.use(notFoundHandler);
   app.use(errorHandler);

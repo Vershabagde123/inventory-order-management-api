@@ -39,12 +39,19 @@ if (env.NODE_ENV !== 'production') {
 }
 
 /** Lightweight connectivity probe used by GET /health. */
-export async function checkDatabaseConnection(): Promise<boolean> {
+export async function checkDatabaseConnection(timeoutMs = 5_000): Promise<boolean> {
+  let timer: NodeJS.Timeout | undefined;
+  const timeout = new Promise<false>((resolve) => {
+    timer = setTimeout(() => resolve(false), timeoutMs);
+  });
+  const probe = prisma.$queryRaw`SELECT 1`.then(
+    () => true,
+    () => false,
+  );
   try {
-    await prisma.$queryRaw`SELECT 1`;
-    return true;
-  } catch {
-    return false;
+    return await Promise.race([probe, timeout]);
+  } finally {
+    clearTimeout(timer);
   }
 }
 

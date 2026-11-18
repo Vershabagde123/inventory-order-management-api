@@ -3,7 +3,11 @@ import { Prisma } from '../../generated/prisma/client.js';
 import { AppError } from '../../utils/AppError.js';
 import { formatMoney, lineTotal, sumMoney } from '../../utils/money.js';
 import { buildPaginationMeta, toSkipTake, type PaginationMeta } from '../../utils/pagination.js';
-import { MAX_LINE_QUANTITY, type ListOrdersQuery, type OrderItemInput } from './order.validation.js';
+import {
+  MAX_LINE_QUANTITY,
+  type ListOrdersQuery,
+  type OrderItemInput,
+} from './order.validation.js';
 
 // ---------------------------------------------------------------------------
 // DTOs

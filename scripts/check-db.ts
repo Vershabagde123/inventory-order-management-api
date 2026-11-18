@@ -56,7 +56,9 @@ async function check(target: Target): Promise<boolean> {
       `SELECT current_setting('server_version') AS version,
               (SELECT ssl FROM pg_stat_ssl WHERE pid = pg_backend_pid()) AS ssl`,
     );
-    console.log(`  connected: yes | server version: ${v.rows[0]?.version} | ssl: ${v.rows[0]?.ssl}`);
+    console.log(
+      `  connected: yes | server version: ${v.rows[0]?.version} | ssl: ${v.rows[0]?.ssl}`,
+    );
 
     const tables = await client.query<{ table_schema: string; table_name: string }>(
       `SELECT table_schema, table_name FROM information_schema.tables
@@ -76,7 +78,9 @@ async function check(target: Target): Promise<boolean> {
            FROM public._prisma_migrations ORDER BY started_at`,
       );
       for (const row of m.rows) {
-        console.log(`  migration: ${row.migration_name} (${row.finished ? 'applied' : 'NOT finished'})`);
+        console.log(
+          `  migration: ${row.migration_name} (${row.finished ? 'applied' : 'NOT finished'})`,
+        );
       }
     }
     return true;
