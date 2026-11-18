@@ -32,3 +32,6 @@ temp/
 .idea/
 .vscode/*
 !.vscode/extensions.json
+
+# Local audit report (not part of the submission)
+FINAL_ASSIGNMENT_AUDIT_REPORT.md
