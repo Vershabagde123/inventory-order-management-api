@@ -1,6 +1,6 @@
 import type { ErrorRequestHandler, RequestHandler } from 'express';
 import { ZodError } from 'zod';
-import { isProduction } from '../config/env.js';
+import { env } from '../config/env.js';
 import { Prisma } from '../generated/prisma/client.js';
 import { AppError, type ErrorDetail } from '../utils/AppError.js';
 
@@ -127,7 +127,8 @@ export const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
     success: false,
     error: { code: 'INTERNAL_SERVER_ERROR', message: 'Internal server error' },
   };
-  if (!isProduction && err instanceof Error && err.stack) {
+  // Stack traces are only ever returned in local development - never in test or production.
+  if (env.NODE_ENV === 'development' && err instanceof Error && err.stack) {
     body.error.stack = err.stack;
   }
   res.status(500).json(body);
