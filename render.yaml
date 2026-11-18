@@ -6,10 +6,10 @@ services:
     runtime: node
     plan: free
     # Dev dependencies (typescript, tsx) are needed to build, even with NODE_ENV=production.
-    buildCommand: npm ci --include=dev && npm run build
-    # Non-destructive: applies pending migrations only. (preDeployCommand requires a paid
-    # plan; on the free plan, append `&& npm run db:migrate:deploy` to buildCommand instead.)
-    preDeployCommand: npm run db:migrate:deploy
+    # Migrations run in the build step because preDeployCommand is not available on the
+    # free plan. `prisma migrate deploy` is non-destructive: it only applies pending migrations.
+    # On a paid plan you may move it to `preDeployCommand: npm run db:migrate:deploy`.
+    buildCommand: npm ci --include=dev && npm run build && npm run db:migrate:deploy
     startCommand: npm start
     healthCheckPath: /health
     envVars:

@@ -31,6 +31,15 @@ export function toProductDto(p: Product): ProductDto {
   };
 }
 
+/**
+ * Prisma's `contains` becomes a SQL LIKE pattern without escaping, so `%` and `_`
+ * would act as wildcards (searching "_" matched every product). Escape them, plus
+ * the escape character itself, so the user's text is matched literally.
+ */
+export function escapeLikePattern(value: string): string {
+  return value.replace(/[\\%_]/g, (ch) => `\\${ch}`);
+}
+
 function isPrismaError(err: unknown, code: string): err is Prisma.PrismaClientKnownRequestError {
   return err instanceof Prisma.PrismaClientKnownRequestError && err.code === code;
 }
@@ -64,11 +73,12 @@ export const productService = {
   async list(
     query: ListProductsQuery,
   ): Promise<{ items: ProductDto[]; pagination: PaginationMeta }> {
-    const where: Prisma.ProductWhereInput = query.search
+    const term = query.search ? escapeLikePattern(query.search) : undefined;
+    const where: Prisma.ProductWhereInput = term
       ? {
           OR: [
-            { name: { contains: query.search, mode: 'insensitive' } },
-            { sku: { contains: query.search, mode: 'insensitive' } },
+            { name: { contains: term, mode: 'insensitive' } },
+            { sku: { contains: term, mode: 'insensitive' } },
           ],
         }
       : {};

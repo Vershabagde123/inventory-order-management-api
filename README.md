@@ -298,6 +298,12 @@ Base URL (local): `http://localhost:5000`. All request and response bodies are J
 **POST /auth/register**
 
 ```json
+{ "email": "jane@example.com", "password": "Password123" }
+```
+
+`name` is optional. When it is omitted, the email's local part is used as the display name (`jane` above). You can also send it explicitly:
+
+```json
 { "name": "Jane Staff", "email": "jane@example.com", "password": "Password123" }
 ```
 
@@ -322,7 +328,7 @@ Base URL (local): `http://localhost:5000`. All request and response bodies are J
 }
 ```
 
-Validation rules: `name` must be 2–100 characters. `email` must be a valid address and is lower-cased. `password` must be 8–72 bytes and contain at least one letter and one digit. Any `role` field is ignored. A duplicate email returns **409** `EMAIL_ALREADY_EXISTS`.
+Validation rules: `email` and `password` are required. `name` is optional, 2–100 characters when given. `email` must be a valid address and is lower-cased. `password` must be 8–72 bytes and contain at least one letter and one digit. Any `role` field is ignored. A duplicate email returns **409** `EMAIL_ALREADY_EXISTS`.
 
 **POST /auth/login**
 
@@ -370,7 +376,7 @@ A duplicate SKU returns **409** `SKU_ALREADY_EXISTS`.
 
 - `page` defaults to 1.
 - `limit` defaults to 10, with a maximum of 100.
-- `search` matches the name **or** the SKU, case-insensitively.
+- `search` matches the name **or** the SKU, case-insensitively, as a literal substring (`%` and `_` are not wildcards).
 
 ```json
 {
@@ -597,6 +603,8 @@ npm run test:coverage      # with coverage report
 - validation schemas
 - money and pagination helpers
 - order-line aggregation
+- the order logic with a mocked database: exact totals, stock deduction, whole-order rejection and rollback on insufficient stock, 404 for unknown products, ascending lock order, merging duplicate lines, and the single READ COMMITTED transaction
+- the health check returning 503 when the database is down
 - JWT signing and verification, including expired, forged, `alg: none` and bad-claim tokens
 - the auth, role and error middleware
 - route guards: 401 without a token, 403 for `STAFF` writes, 400 for invalid input
@@ -663,19 +671,14 @@ A blueprint is included in `render.yaml`. You can either:
 - choose **New → Blueprint** and select this repository, **or**
 - create a **Web Service** by hand with the settings below.
 
-| Setting            | Value                                    |
-| ------------------ | ---------------------------------------- |
-| Runtime            | Node                                     |
-| Build command      | `npm ci --include=dev && npm run build`  |
-| Pre-deploy command | `npm run db:migrate:deploy` (paid plans) |
-| Start command      | `npm start`                              |
-| Health check path  | `/health`                                |
+| Setting           | Value                                                                |
+| ----------------- | -------------------------------------------------------------------- |
+| Runtime           | Node                                                                 |
+| Build command     | `npm ci --include=dev && npm run build && npm run db:migrate:deploy` |
+| Start command     | `npm start`                                                          |
+| Health check path | `/health`                                                            |
 
-On the **free plan**, which has no pre-deploy step, use this build command instead:
-
-```
-npm ci --include=dev && npm run build && npm run db:migrate:deploy
-```
+The build command runs the migrations because the free plan has no pre-deploy step. `prisma migrate deploy` only applies pending migrations and never resets data. On a paid plan you can move it to a pre-deploy command instead.
 
 Set these environment variables in the Render dashboard:
 

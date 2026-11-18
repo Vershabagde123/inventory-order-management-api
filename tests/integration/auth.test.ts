@@ -48,6 +48,32 @@ describe.skipIf(!dbReady)('Auth (integration)', () => {
     expect(res.body.error.details.length).toBeGreaterThanOrEqual(3);
   });
 
+  it('registers with only email and password (as the assignment specifies)', async () => {
+    const minimalEmail = ctx.email('minimal');
+    const res = await api().post('/auth/register').send({ email: minimalEmail, password });
+    expect(res.status).toBe(201);
+    expect(res.body.data.user).toMatchObject({
+      email: minimalEmail,
+      role: 'STAFF',
+      name: minimalEmail.split('@')[0],
+    });
+
+    const login = await api().post('/auth/login').send({ email: minimalEmail, password });
+    expect(login.status).toBe(200);
+    expect(login.body.data.token).toEqual(expect.any(String));
+  });
+
+  it('rejects registration with missing email or password (400)', async () => {
+    const noEmail = await api().post('/auth/register').send({ password });
+    const noPassword = await api()
+      .post('/auth/register')
+      .send({ email: ctx.email('nopw') });
+    expect(noEmail.status).toBe(400);
+    expect(noEmail.body.error.details[0].field).toBe('email');
+    expect(noPassword.status).toBe(400);
+    expect(noPassword.body.error.details[0].field).toBe('password');
+  });
+
   it('logs in with valid credentials and returns a usable JWT', async () => {
     const res = await api().post('/auth/login').send({ email, password });
     expect(res.status).toBe(200);

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { aggregateOrderItems } from '../../src/modules/orders/order.service.js';
+import { escapeLikePattern } from '../../src/modules/products/product.service.js';
 import { AppError } from '../../src/utils/AppError.js';
 import { formatMoney, lineTotal, sumMoney, toDecimal } from '../../src/utils/money.js';
 import { buildPaginationMeta, toSkipTake } from '../../src/utils/pagination.js';
@@ -13,6 +14,15 @@ describe('money utils', () => {
   it('computes exact line totals and sums', () => {
     const total = sumMoney([lineTotal('50000.00', 2), lineTotal('799.99', 3)]);
     expect(formatMoney(total)).toBe('102399.97');
+  });
+});
+
+describe('escapeLikePattern', () => {
+  it('escapes LIKE wildcards and the escape character', () => {
+    expect(escapeLikePattern('LAP_1')).toBe('LAP\\_1');
+    expect(escapeLikePattern('50%')).toBe('50\\%');
+    expect(escapeLikePattern('a\\b')).toBe('a\\\\b');
+    expect(escapeLikePattern('laptop')).toBe('laptop');
   });
 });
 
