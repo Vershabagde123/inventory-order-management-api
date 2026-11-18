@@ -63,6 +63,11 @@ export function verifyAccessToken(token: string): AuthUser {
   return { id, email, role: role as Role };
 }
 
+/** Display name used when registration omits `name`: the email's local part. */
+export function defaultNameFromEmail(email: string): string {
+  return (email.split('@')[0] ?? email).slice(0, 100);
+}
+
 function buildAuthResult(user: Parameters<typeof toPublicUser>[0]): AuthResult {
   return {
     user: toPublicUser(user),
@@ -83,7 +88,7 @@ export const authService = {
     const passwordHash = await bcrypt.hash(input.password, env.BCRYPT_SALT_ROUNDS);
     try {
       const user = await userService.create({
-        name: input.name,
+        name: input.name ?? defaultNameFromEmail(input.email),
         email: input.email,
         passwordHash,
         role: 'STAFF',
