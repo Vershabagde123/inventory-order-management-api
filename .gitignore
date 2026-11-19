@@ -6,7 +6,7 @@ dist/
 build/
 
 # Generated Prisma Client
-src/generated/
+backend/src/generated/
 
 # Environment / secrets
 .env

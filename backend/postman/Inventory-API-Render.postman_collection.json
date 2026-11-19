@@ -99,12 +99,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/health",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "health"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["health"]
             },
             "auth": {
               "type": "noauth"
@@ -146,13 +142,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/auth/login",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "login"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
             },
             "auth": {
               "type": "noauth"
@@ -196,13 +187,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/auth/register",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "register"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "register"]
             },
             "auth": {
               "type": "noauth"
@@ -245,13 +231,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/auth/register",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "register"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "register"]
             },
             "auth": {
               "type": "noauth"
@@ -293,13 +274,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/auth/register",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "register"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "register"]
             },
             "auth": {
               "type": "noauth"
@@ -342,13 +318,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/auth/register",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "register"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "register"]
             },
             "auth": {
               "type": "noauth"
@@ -391,13 +362,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/auth/login",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "login"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
             },
             "auth": {
               "type": "noauth"
@@ -438,13 +404,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/auth/login",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "login"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
             },
             "auth": {
               "type": "noauth"
@@ -485,13 +446,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/auth/login",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "login"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
             },
             "auth": {
               "type": "noauth"
@@ -528,13 +484,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/users/me",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "users",
-                "me"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "me"]
             },
             "auth": {
               "type": "bearer",
@@ -581,12 +532,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/products",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products"]
             },
             "auth": {
               "type": "bearer",
@@ -635,12 +582,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/products",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products"]
             },
             "auth": {
               "type": "bearer",
@@ -689,12 +632,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/products",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products"]
             },
             "auth": {
               "type": "bearer",
@@ -743,12 +682,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/products",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products"]
             },
             "auth": {
               "type": "bearer",
@@ -796,12 +731,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/products",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products"]
             },
             "auth": {
               "type": "bearer",
@@ -850,12 +781,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/products",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products"]
             },
             "auth": {
               "type": "bearer",
@@ -903,12 +830,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/products",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products"]
             },
             "auth": {
               "type": "bearer",
@@ -957,12 +880,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/products",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products"]
             },
             "auth": {
               "type": "bearer",
@@ -1007,12 +926,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/products?page=1&limit=5",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products"
-              ],
+              "host": ["{{baseUrl}}"],
+              "path": ["products"],
               "query": [
                 {
                   "key": "page",
@@ -1057,12 +972,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/products?search={{runId}}&limit=10",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products"
-              ],
+              "host": ["{{baseUrl}}"],
+              "path": ["products"],
               "query": [
                 {
                   "key": "search",
@@ -1107,12 +1018,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/products?search=WIRELESS MOUSE {{runId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products"
-              ],
+              "host": ["{{baseUrl}}"],
+              "path": ["products"],
               "query": [
                 {
                   "key": "search",
@@ -1153,12 +1060,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/products?search=hub-{{runId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products"
-              ],
+              "host": ["{{baseUrl}}"],
+              "path": ["products"],
               "query": [
                 {
                   "key": "search",
@@ -1186,9 +1089,7 @@
               "listen": "test",
               "script": {
                 "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));"
-                ]
+                "exec": ["pm.test(\"Status is 400\", () => pm.response.to.have.status(400));"]
               }
             }
           ],
@@ -1197,12 +1098,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/products?limit=1000",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products"
-              ],
+              "host": ["{{baseUrl}}"],
+              "path": ["products"],
               "query": [
                 {
                   "key": "limit",
@@ -1243,13 +1140,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/products/{{productAId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products",
-                "{{productAId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "{{productAId}}"]
             },
             "auth": {
               "type": "bearer",
@@ -1283,13 +1175,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/products/999999999",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products",
-                "999999999"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "999999999"]
             },
             "auth": {
               "type": "bearer",
@@ -1323,13 +1210,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/products/abc",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products",
-                "abc"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "abc"]
             },
             "auth": {
               "type": "bearer",
@@ -1369,13 +1251,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/products/{{productAId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products",
-                "{{productAId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "{{productAId}}"]
             },
             "auth": {
               "type": "bearer",
@@ -1406,9 +1283,7 @@
               "listen": "test",
               "script": {
                 "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));"
-                ]
+                "exec": ["pm.test(\"Status is 400\", () => pm.response.to.have.status(400));"]
               }
             }
           ],
@@ -1422,13 +1297,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/products/{{productAId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products",
-                "{{productAId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "{{productAId}}"]
             },
             "auth": {
               "type": "bearer",
@@ -1459,9 +1329,7 @@
               "listen": "test",
               "script": {
                 "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 404\", () => pm.response.to.have.status(404));"
-                ]
+                "exec": ["pm.test(\"Status is 404\", () => pm.response.to.have.status(404));"]
               }
             }
           ],
@@ -1475,13 +1343,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/products/999999999",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products",
-                "999999999"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "999999999"]
             },
             "auth": {
               "type": "bearer",
@@ -1512,9 +1375,7 @@
               "listen": "test",
               "script": {
                 "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 204\", () => pm.response.to.have.status(204));"
-                ]
+                "exec": ["pm.test(\"Status is 204\", () => pm.response.to.have.status(204));"]
               }
             }
           ],
@@ -1523,13 +1384,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/products/{{tempProductId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products",
-                "{{tempProductId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "{{tempProductId}}"]
             },
             "auth": {
               "type": "bearer",
@@ -1551,9 +1407,7 @@
               "listen": "test",
               "script": {
                 "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 404\", () => pm.response.to.have.status(404));"
-                ]
+                "exec": ["pm.test(\"Status is 404\", () => pm.response.to.have.status(404));"]
               }
             }
           ],
@@ -1562,13 +1416,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/products/{{tempProductId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products",
-                "{{tempProductId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "{{tempProductId}}"]
             },
             "auth": {
               "type": "bearer",
@@ -1596,9 +1445,7 @@
               "listen": "test",
               "script": {
                 "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
-                ]
+                "exec": ["pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"]
               }
             }
           ],
@@ -1607,12 +1454,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/products?page=1&limit=10",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products"
-              ],
+              "host": ["{{baseUrl}}"],
+              "path": ["products"],
               "query": [
                 {
                   "key": "page",
@@ -1644,9 +1487,7 @@
               "listen": "test",
               "script": {
                 "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
-                ]
+                "exec": ["pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"]
               }
             }
           ],
@@ -1655,13 +1496,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/products/{{productAId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products",
-                "{{productAId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "{{productAId}}"]
             },
             "auth": {
               "type": "bearer",
@@ -1700,12 +1536,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/products",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products"]
             },
             "auth": {
               "type": "bearer",
@@ -1736,9 +1568,7 @@
               "listen": "test",
               "script": {
                 "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 403\", () => pm.response.to.have.status(403));"
-                ]
+                "exec": ["pm.test(\"Status is 403\", () => pm.response.to.have.status(403));"]
               }
             }
           ],
@@ -1752,13 +1582,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/products/{{productAId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products",
-                "{{productAId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "{{productAId}}"]
             },
             "auth": {
               "type": "bearer",
@@ -1789,9 +1614,7 @@
               "listen": "test",
               "script": {
                 "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 403\", () => pm.response.to.have.status(403));"
-                ]
+                "exec": ["pm.test(\"Status is 403\", () => pm.response.to.have.status(403));"]
               }
             }
           ],
@@ -1800,13 +1623,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/products/{{productAId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products",
-                "{{productAId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "{{productAId}}"]
             },
             "auth": {
               "type": "bearer",
@@ -1841,13 +1659,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/products/{{productAId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products",
-                "{{productAId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "{{productAId}}"]
             },
             "auth": {
               "type": "bearer",
@@ -1881,12 +1694,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/products",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products"]
             },
             "auth": {
               "type": "noauth"
@@ -1918,12 +1727,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/products",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products"]
             },
             "auth": {
               "type": "noauth"
@@ -1965,12 +1770,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/orders",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "orders"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["orders"]
             },
             "auth": {
               "type": "bearer",
@@ -2013,13 +1814,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/products/{{productAId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products",
-                "{{productAId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "{{productAId}}"]
             },
             "auth": {
               "type": "bearer",
@@ -2055,13 +1851,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/orders/{{orderId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "orders",
-                "{{orderId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["orders", "{{orderId}}"]
             },
             "auth": {
               "type": "bearer",
@@ -2096,12 +1887,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/orders?page=1&limit=10",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "orders"
-              ],
+              "host": ["{{baseUrl}}"],
+              "path": ["orders"],
               "query": [
                 {
                   "key": "page",
@@ -2133,9 +1920,7 @@
               "listen": "test",
               "script": {
                 "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
-                ]
+                "exec": ["pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"]
               }
             }
           ],
@@ -2149,13 +1934,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/products/{{productAId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products",
-                "{{productAId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "{{productAId}}"]
             },
             "auth": {
               "type": "bearer",
@@ -2200,13 +1980,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/orders/{{orderId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "orders",
-                "{{orderId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["orders", "{{orderId}}"]
             },
             "auth": {
               "type": "bearer",
@@ -2248,12 +2023,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/orders",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "orders"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["orders"]
             },
             "auth": {
               "type": "bearer",
@@ -2303,12 +2074,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/orders",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "orders"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["orders"]
             },
             "auth": {
               "type": "bearer",
@@ -2352,13 +2119,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/products/{{productAId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products",
-                "{{productAId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "{{productAId}}"]
             },
             "auth": {
               "type": "bearer",
@@ -2392,13 +2154,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/products/{{productCId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products",
-                "{{productCId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "{{productCId}}"]
             },
             "auth": {
               "type": "bearer",
@@ -2437,12 +2194,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/orders",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "orders"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["orders"]
             },
             "auth": {
               "type": "bearer",
@@ -2473,9 +2226,7 @@
               "listen": "test",
               "script": {
                 "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));"
-                ]
+                "exec": ["pm.test(\"Status is 400\", () => pm.response.to.have.status(400));"]
               }
             }
           ],
@@ -2489,12 +2240,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/orders",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "orders"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["orders"]
             },
             "auth": {
               "type": "bearer",
@@ -2525,9 +2272,7 @@
               "listen": "test",
               "script": {
                 "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));"
-                ]
+                "exec": ["pm.test(\"Status is 400\", () => pm.response.to.have.status(400));"]
               }
             }
           ],
@@ -2541,12 +2286,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/orders",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "orders"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["orders"]
             },
             "auth": {
               "type": "bearer",
@@ -2577,9 +2318,7 @@
               "listen": "test",
               "script": {
                 "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));"
-                ]
+                "exec": ["pm.test(\"Status is 400\", () => pm.response.to.have.status(400));"]
               }
             }
           ],
@@ -2593,12 +2332,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/orders",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "orders"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["orders"]
             },
             "auth": {
               "type": "bearer",
@@ -2629,9 +2364,7 @@
               "listen": "test",
               "script": {
                 "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));"
-                ]
+                "exec": ["pm.test(\"Status is 400\", () => pm.response.to.have.status(400));"]
               }
             }
           ],
@@ -2645,12 +2378,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/orders",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "orders"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["orders"]
             },
             "auth": {
               "type": "bearer",
@@ -2698,12 +2427,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/orders",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "orders"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["orders"]
             },
             "auth": {
               "type": "bearer",
@@ -2734,9 +2459,7 @@
               "listen": "test",
               "script": {
                 "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 404\", () => pm.response.to.have.status(404));"
-                ]
+                "exec": ["pm.test(\"Status is 404\", () => pm.response.to.have.status(404));"]
               }
             }
           ],
@@ -2745,13 +2468,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/orders/999999999",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "orders",
-                "999999999"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["orders", "999999999"]
             },
             "auth": {
               "type": "bearer",
@@ -2785,13 +2503,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/products/{{productAId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "products",
-                "{{productAId}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "{{productAId}}"]
             },
             "auth": {
               "type": "bearer",
@@ -2834,13 +2547,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/reports/low-stock?threshold=10",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "reports",
-                "low-stock"
-              ],
+              "host": ["{{baseUrl}}"],
+              "path": ["reports", "low-stock"],
               "query": [
                 {
                   "key": "threshold",
@@ -2880,13 +2588,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/reports/low-stock",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "reports",
-                "low-stock"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["reports", "low-stock"]
             },
             "auth": {
               "type": "bearer",
@@ -2920,13 +2623,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/reports/low-stock?threshold=0",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "reports",
-                "low-stock"
-              ],
+              "host": ["{{baseUrl}}"],
+              "path": ["reports", "low-stock"],
               "query": [
                 {
                   "key": "threshold",
@@ -2954,9 +2652,7 @@
               "listen": "test",
               "script": {
                 "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));"
-                ]
+                "exec": ["pm.test(\"Status is 400\", () => pm.response.to.have.status(400));"]
               }
             }
           ],
@@ -2965,13 +2661,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/reports/low-stock?threshold=-1",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "reports",
-                "low-stock"
-              ],
+              "host": ["{{baseUrl}}"],
+              "path": ["reports", "low-stock"],
               "query": [
                 {
                   "key": "threshold",
@@ -2999,9 +2690,7 @@
               "listen": "test",
               "script": {
                 "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 401\", () => pm.response.to.have.status(401));"
-                ]
+                "exec": ["pm.test(\"Status is 401\", () => pm.response.to.have.status(401));"]
               }
             }
           ],
@@ -3010,13 +2699,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/reports/low-stock",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "reports",
-                "low-stock"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["reports", "low-stock"]
             },
             "auth": {
               "type": "noauth"

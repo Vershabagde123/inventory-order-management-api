@@ -1,37 +1,71 @@
-# Render Blueprint (https://render.com/docs/blueprint-spec)
-# Secrets are declared with `sync: false` - enter them in the Render dashboard.
+# Render Blueprint - deploys the backend API and the frontend together.
+# Docs: https://render.com/docs/blueprint-spec
+#
+# Render -> New -> Blueprint -> select this repository. Render reads this file from the repo root.
+# Values marked `sync: false` are secrets: Render asks for them when you create the Blueprint.
 services:
+  # ------------------------------------------------------------------ backend
   - type: web
-    name: inventory-order-management-api
+    name: inventory-hub-api
     runtime: node
     plan: free
-    # Dev dependencies (typescript, tsx) are needed to build, even with NODE_ENV=production.
-    buildCommand: npm ci --include=dev && npm run build
-    # Non-destructive: applies pending migrations only. (preDeployCommand requires a paid
-    # plan; on the free plan, append `&& npm run db:migrate:deploy` to buildCommand instead.)
-    preDeployCommand: npm run db:migrate:deploy
+    rootDir: backend
+    # Dev dependencies (TypeScript, tsx) are needed to build even with NODE_ENV=production.
+    # `prisma migrate deploy` only applies pending migrations; it never resets data.
+    # (It runs in the build step because pre-deploy commands need a paid plan.)
+    buildCommand: npm ci --include=dev && npm run build && npm run db:migrate:deploy
     startCommand: npm start
     healthCheckPath: /health
     envVars:
       - key: NODE_ENV
         value: production
       - key: NODE_VERSION
-        value: 24
-      - key: DATABASE_URL
+        value: '24'
+      - key: DATABASE_URL # Neon pooled connection string (host contains "-pooler")
         sync: false
-      - key: DIRECT_URL
+      - key: DIRECT_URL # Neon direct connection string (used for migrations)
         sync: false
       - key: JWT_SECRET
         generateValue: true
       - key: JWT_EXPIRES_IN
         value: 1d
       - key: BCRYPT_SALT_ROUNDS
-        value: 12
+        value: '12'
+      # The API authenticates with Bearer tokens (no cookies), so any origin is allowed.
+      # To restrict it, set this to the frontend URL, e.g. https://inventory-hub-web.onrender.com
       - key: CORS_ORIGIN
         value: '*'
       - key: ADMIN_NAME
         value: System Admin
-      - key: ADMIN_EMAIL
+      - key: ADMIN_EMAIL # used by `npm run db:seed`
         sync: false
-      - key: ADMIN_PASSWORD
+      - key: ADMIN_PASSWORD # used by `npm run db:seed`
         sync: false
+
+  # ----------------------------------------------------------------- frontend
+  - type: web
+    name: inventory-hub-web
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    # Single-page app: serve index.html for every route (/products, /orders/12, ...).
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+    envVars:
+      - key: NODE_VERSION
+        value: '24'
+      # Public URL of the backend service above, read at BUILD time by Vite.
+      # Render normally gives it https://<service-name>.onrender.com. If the API ends up at
+      # a different URL, change this value and redeploy the static site.
+      - key: VITE_API_BASE_URL
+        value: https://inventory-hub-api.onrender.com
