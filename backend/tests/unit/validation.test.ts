@@ -22,7 +22,7 @@ describe('auth validation', () => {
   });
 
   it.each([
-    [{ email: 'a@b.com', password: 'Secret123' }, 'name'],
+    [{ name: 'J', email: 'a@b.com', password: 'Secret123' }, 'name'],
     [{ name: 'Jane', email: 'not-an-email', password: 'Secret123' }, 'email'],
     [{ name: 'Jane', email: 'a@b.com', password: 'short1' }, 'password'],
     [{ name: 'Jane', email: 'a@b.com', password: 'onlyletters' }, 'password'],

@@ -7,11 +7,14 @@ const emailSchema = z
   .pipe(z.email('email must be a valid email address').max(255, 'email is too long'));
 
 export const registerSchema = z.object({
+  // The assignment specifies registration "with email and password", so name is optional.
+  // When omitted, the service derives a display name from the email's local part.
   name: z
-    .string({ error: 'name is required' })
+    .string({ error: 'name must be a string' })
     .trim()
     .min(2, 'name must be at least 2 characters')
-    .max(100, 'name must be at most 100 characters'),
+    .max(100, 'name must be at most 100 characters')
+    .optional(),
   email: emailSchema,
   password: z
     .string({ error: 'password is required' })
