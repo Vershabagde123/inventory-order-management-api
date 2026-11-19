@@ -9,10 +9,10 @@ A full-stack inventory and order management system: a transaction-safe REST API 
 └── render.yaml  Render Blueprint that deploys both
 ```
 
-| Part     | Documentation                                | Local URL               |
-| -------- | -------------------------------------------- | ----------------------- |
-| Backend  | [backend/README.md](backend/README.md)       | `http://localhost:5000` |
-| Frontend | [frontend/README.md](frontend/README.md)     | `http://localhost:5173` |
+| Part     | Documentation                            | Local URL               |
+| -------- | ---------------------------------------- | ----------------------- |
+| Backend  | [backend/README.md](backend/README.md)   | `http://localhost:5000` |
+| Frontend | [frontend/README.md](frontend/README.md) | `http://localhost:5173` |
 
 ## Run locally
 
@@ -38,10 +38,10 @@ Sign in with the `ADMIN_EMAIL` and `ADMIN_PASSWORD` from `backend/.env`.
 
 `render.yaml` creates two services from this repository:
 
-| Service             | Type        | Root directory | URL (default)                             |
-| ------------------- | ----------- | -------------- | ----------------------------------------- |
-| `inventory-hub-api` | Web service | `backend/`     | `https://inventory-hub-api.onrender.com` |
-| `inventory-hub-web` | Static site | `frontend/`    | `https://inventory-hub-web.onrender.com` |
+| Service             | Type        | Root directory | Live URL                                      |
+| ------------------- | ----------- | -------------- | --------------------------------------------- |
+| `inventory-hub-api` | Web service | `backend/`     | `https://inventory-hub-api-v8xx.onrender.com` |
+| `inventory-hub-web` | Static site | `frontend/`    | `https://inventory-hub-web-v8xx.onrender.com` |
 
 1. Push this repository to GitHub.
 2. In Render, choose **New → Blueprint**, pick the repository and branch, and click **Apply**.
@@ -51,6 +51,7 @@ Sign in with the `ADMIN_EMAIL` and `ADMIN_PASSWORD` from `backend/.env`.
    - `ADMIN_EMAIL` and `ADMIN_PASSWORD`: the admin account to seed
 
    `JWT_SECRET` is generated automatically. Database migrations run during the backend build and are non-destructive.
+
 4. After the first backend deploy, open **inventory-hub-api → Shell** and run `npm run db:seed` once to create the admin account. Skip this if your Neon database already has the admin from an earlier deploy.
 5. Open the `inventory-hub-web` URL and sign in.
 

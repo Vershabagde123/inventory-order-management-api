@@ -32,7 +32,7 @@ services:
       - key: BCRYPT_SALT_ROUNDS
         value: '12'
       # The API authenticates with Bearer tokens (no cookies), so any origin is allowed.
-      # To restrict it, set this to the frontend URL, e.g. https://inventory-hub-web.onrender.com
+      # To restrict it, set this to the frontend URL, e.g. https://inventory-hub-web-v8xx.onrender.com
       - key: CORS_ORIGIN
         value: '*'
       - key: ADMIN_NAME
@@ -65,7 +65,8 @@ services:
       - key: NODE_VERSION
         value: '24'
       # Public URL of the backend service above, read at BUILD time by Vite.
-      # Render normally gives it https://<service-name>.onrender.com. If the API ends up at
-      # a different URL, change this value and redeploy the static site.
+      # Render assigned this deployment the suffix "-v8xx" (inventory-hub-api-v8xx). If you
+      # recreate the Blueprint and the API gets a different URL, change this value and
+      # redeploy the static site.
       - key: VITE_API_BASE_URL
-        value: https://inventory-hub-api.onrender.com
+        value: https://inventory-hub-api-v8xx.onrender.com
